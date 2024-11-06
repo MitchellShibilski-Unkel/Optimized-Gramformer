@@ -23,7 +23,7 @@ influent_sentences = [
 ]   
 
 for influent_sentence in influent_sentences:
-    corrected_sentences = gf.correct(influent_sentence)
+    corrected_sentences = gf.correct(influent_sentence, max_candidates=1)
     print("[Input] ", influent_sentence)
     for corrected_sentence in corrected_sentences:
       print("[Correction] ",corrected_sentence)
