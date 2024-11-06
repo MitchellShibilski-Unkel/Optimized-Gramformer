@@ -3,7 +3,7 @@ import gc
 
 class Gramformer:
 
-  def __init__(self, models=1, use_gpu=False):
+  def __init__(self, models: int = 1, use_gpu: bool = False):
     import errant
     from transformers import AutoTokenizer
     from transformers import AutoModelForSeq2SeqLM
@@ -23,28 +23,27 @@ class Gramformer:
     self.model_loaded = False
 
     if models == 1:
-        self.correction_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag, token=False)
-        self.correction_model     = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, token=False)
+        self.correction_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag)
+        self.correction_model     = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag)
         self.correction_model     = self.correction_model.to(device)
         self.model_loaded         = True
-        print("[Gramformer] Grammar error correct/highlight model loaded...")
+        print("[Gramformer] :: Sucess :: Grammar correct/highlight model loaded...")
     elif models == 2:
         # TODO
         print("TO BE IMPLEMENTED!!!")
 
-  def correct(self, input_sentence, max_candidates=1):
-      if self.model_loaded:
+  def correct(self, input_sentence: str, max_candidates=1):
+      if self.model_loaded == True:
         correction_prefix = "gec: "
         input_sentence = correction_prefix + input_sentence
         input_ids = self.correction_tokenizer.encode(input_sentence, return_tensors='pt')
         input_ids = input_ids.to(self.device)
 
+        # top_k=50, top_p=0.95
         preds = self.correction_model.generate(
             input_ids,
             do_sample=True, 
             max_length=128, 
-#             top_k=50, 
-#             top_p=0.95, 
             num_beams=7,
             early_stopping=True,
             num_return_sequences=max_candidates)
@@ -62,8 +61,7 @@ class Gramformer:
         #ranked_corrected.sort(key = lambda x:x[1], reverse=True)
         return corrected
       else:
-        print("Model is not loaded")  
-        return None
+        return "Model is not loaded"
 
   def highlight(self, orig, cor):
       edits = self._get_edits(orig, cor)
