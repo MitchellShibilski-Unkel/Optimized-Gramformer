@@ -1,28 +1,33 @@
+import gc
+
+
 class Gramformer:
 
   def __init__(self, models=1, use_gpu=False):
+    import errant
     from transformers import AutoTokenizer
     from transformers import AutoModelForSeq2SeqLM
     #from lm_scorer.models.auto import AutoLMScorer as LMScorer
-    import errant
+    
     self.annotator = errant.load('en')
     
-    if use_gpu:
-        device= "cuda:0"
+    if use_gpu == True:
+        device= "cuda"
     else:
         device = "cpu"
-    batch_size = 1    
+        
+    #batch_size = 1    
     #self.scorer = LMScorer.from_pretrained("gpt2", device=device, batch_size=batch_size)    
-    self.device    = device
+    self.device = device
     correction_model_tag = "prithivida/grammar_error_correcter_v1"
     self.model_loaded = False
 
     if models == 1:
-        self.correction_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag, use_auth_token=False)
-        self.correction_model     = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, use_auth_token=False)
+        self.correction_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag, token=False)
+        self.correction_model     = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, token=False)
         self.correction_model     = self.correction_model.to(device)
-        self.model_loaded = True
-        print("[Gramformer] Grammar error correct/highlight model loaded..")
+        self.model_loaded         = True
+        print("[Gramformer] Grammar error correct/highlight model loaded...")
     elif models == 2:
         # TODO
         print("TO BE IMPLEMENTED!!!")
@@ -47,6 +52,9 @@ class Gramformer:
         corrected = set()
         for pred in preds:  
           corrected.add(self.correction_tokenizer.decode(pred, skip_special_tokens=True).strip())
+          
+        # Free up RAM after the model has ran
+        gc.collect()
 
         #corrected = list(corrected)
         #scores = self.scorer.sentence_score(corrected, log=True)
