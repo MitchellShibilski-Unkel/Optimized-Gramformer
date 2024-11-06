@@ -91,7 +91,7 @@ def set_seed(seed):
 set_seed(1212)
 
 
-gf = Gramformer(models = 1, use_gpu=False) # 1=corrector, 2=detector
+gf = Gramformer(models = 1, device=False) # 1=corrector, 2=detector
 
 influent_sentences = [
     "He are moving here.",
@@ -167,7 +167,7 @@ from gramformer import Gramformer
 
 set_seed(1212)
 
-gf = Gramformer(models = 1, use_gpu=False) # 1=corrector, 2=detector
+gf = Gramformer(models = 1, device=False) # 1=corrector, 2=detector
 
 influent_sentences = [
     "He are moving here.",
@@ -216,7 +216,7 @@ from gramformer import Gramformer
 
 set_seed(1212)
 
-gf = Gramformer(models = 1, use_gpu=False) # 1=corrector, 2=detector
+gf = Gramformer(models = 1, device=False) # 1=corrector, 2=detector
 
 
 influent_sentences = [
@@ -260,7 +260,7 @@ for influent_sentence in influent_sentences:
 ### Detector - Coming soon
 ```python
 from gramformer import Gramformer
-gf = Gramformer(models = 2, use_gpu=False) # 1=corrector, 2=detector
+gf = Gramformer(models = 2, device=False) # 1=corrector, 2=detector
 grammar_fluency_score = gf.detect(<your input sentence>)
 ```
 
@@ -273,6 +273,11 @@ grammar_fluency_score = gf.detect(<your input sentence>)
 |[<s>prithivida/grammar_error_correcter</s>](https://huggingface.co/prithivida/grammar_error_correcter)|Seq2Seq    |The corrected sentence              |Beta / Pre-release (**Not available anymore**)|
 |[prithivida/grammar_error_correcter_v1](https://huggingface.co/prithivida/grammar_error_correcter_v1)  |Seq2Seq    |The corrected sentence              |Stable|
 
+## System Compatibility
+Gramformer can run on the `CPU` and `GPU (Cuda)`. <br />
+```python
+    gf = Gramformer(models=1, device="cpu, gpu, or cuda")
+``` 
 
 ## Dataset
 The following techniques were used to generate datasets for fine-tunning the model prithivida/grammar_error_correcter_v1
