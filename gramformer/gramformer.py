@@ -2,7 +2,6 @@ import gc
 
 
 class Gramformer:
-
   def __init__(self, models: int = 1, use_gpu: bool = False):
     import torch
     import errant
@@ -13,8 +12,8 @@ class Gramformer:
     
     self.annotator = errant.load('en')
     
-    if use_gpu == True:
-        device= "cuda"
+    if use_gpu:
+        device = "cuda"
     else:
         device = "cpu"
         
@@ -25,9 +24,9 @@ class Gramformer:
     self.model_loaded = False
 
     if models == 1:
-        self.correction_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag)
-        self.correction_model     = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag)
-        self.correction_model     = quantize_dynamic(self.correction_model.to(device), {torch.nn.Linear}, dtype=torch.qint8)
+        self.correction_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag, token=False)
+        self.correction_model     = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, token=False)
+        self.correction_model     = quantize_dynamic(self.correction_model.to(device), {torch.nn.Linear}, dtype=torch.qint8)  # Reduces the model's size to run faster
         self.model_loaded         = True
         print("[Gramformer] :: Sucess :: Grammar Error Correction/Highlight Model Loaded...")
     elif models == 2:
@@ -42,6 +41,7 @@ class Gramformer:
         input_ids = input_ids.to(self.device)
 
         # top_k=50, top_p=0.95
+        # Get predictions from the model to use to correct the grammar
         preds = self.correction_model.generate(
             input_ids,
             do_sample=True, 
@@ -55,6 +55,7 @@ class Gramformer:
           corrected.add(self.correction_tokenizer.decode(pred, skip_special_tokens=True).strip())
           
         # Free up RAM after the model has ran
+        # Helps when running the model multiple times on lower end machines
         gc.collect()
 
         #corrected = list(corrected)
