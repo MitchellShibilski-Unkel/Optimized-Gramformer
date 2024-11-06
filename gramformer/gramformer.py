@@ -4,9 +4,11 @@ import gc
 class Gramformer:
 
   def __init__(self, models: int = 1, use_gpu: bool = False):
+    import torch
     import errant
     from transformers import AutoTokenizer
     from transformers import AutoModelForSeq2SeqLM
+    from torch.quantization import quantize_dynamic
     #from lm_scorer.models.auto import AutoLMScorer as LMScorer
     
     self.annotator = errant.load('en')
@@ -25,9 +27,9 @@ class Gramformer:
     if models == 1:
         self.correction_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag)
         self.correction_model     = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag)
-        self.correction_model     = self.correction_model.to(device)
+        self.correction_model     = quantize_dynamic(self.correction_model.to(device), {torch.nn.Linear}, dtype=torch.qint8)
         self.model_loaded         = True
-        print("[Gramformer] :: Sucess :: Grammar correct/highlight model loaded...")
+        print("[Gramformer] :: Sucess :: Grammar Error Correction/Highlight Model Loaded...")
     elif models == 2:
         # TODO
         print("TO BE IMPLEMENTED!!!")
