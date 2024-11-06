@@ -23,6 +23,7 @@ Human and machine generated text often suffer from grammatical and/or typographi
   * [Highlighter - Available now](#highlighter---available-now)
   * [Detector - Coming soon](#detector---coming-soon)
 - [Models](#models)
+- [System Compatibility](#system-compatibility)
 - [Dataset](#dataset)
 - [Note on commercial uses and release versions](#note-on-commercial-uses-and-release-versions)
 - [Benchmark](#benchmark)
