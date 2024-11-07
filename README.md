@@ -12,6 +12,8 @@ Human and machine generated text often suffer from grammatical and/or typographi
 
 **Fine-tuning for this model is done on relatively smaller models with not-so-much of data due to compute budget constraints. So take the results with a pinch of salt and consider this as a proof-of-concept for novel method for generating grammar error correction dataset. I am working on a version based on a larger base model and lot more data if someone might want to use this in producution setup**
 
+**_Built off the original Gramformer by Prithiviraj Damodaran_**
+
 ## Table of contents
 - [Usecases for Gramformer](#usecases-for-gramformer)
 - [Installation](#installation)
@@ -66,7 +68,7 @@ As of today grammatical safety nets for authoring social contents (Post or Comme
 
 ## Installation
 ```python
-pip install -U git+https://github.com/PrithivirajDamodaran/Gramformer.git
+pip install -U git+https://github.com/MitchellShibilski-Unkel/.git
 ```
 ## Quick Start
 
