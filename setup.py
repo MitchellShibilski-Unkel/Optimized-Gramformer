@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="optgramformer",
-    version="1.0",
+    version="2.0",
     author="Mitchell Shibilski-Unkel",
     author_email="",
     description="Optimized Gramformer",
