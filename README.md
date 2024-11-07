@@ -16,13 +16,6 @@ Human and machine generated text often suffer from grammatical and/or typographi
 ## Table of contents
 - [Usecases for Gramformer](#usecases-for-gramformer)
 - [Installation](#installation)
-- [Quick Start](#quick-start)
-  * [Correcter - Available now](#correcter---available-now)
-  * [Challenge with generative models](#challenge-with-generative-models)
-  * [Correcter with QE estimator - Available now](#correcter-with-qe-estimator---available-now)
-  * [Get Edits - Available now](#get-edits---available-now)
-  * [Highlighter - Available now](#highlighter---available-now)
-  * [Detector - Coming soon](#detector---coming-soon)
 - [Models](#models)
 - [System Compatibility](#system-compatibility)
 - [Dataset](#dataset)
@@ -69,15 +62,6 @@ As of today grammatical safety nets for authoring social contents (Post or Comme
 ```python
 pip install -U git+https://github.com/MitchellShibilski-Unkel/Optimized-Gramformer.git
 ```
-## Quick Start
-
-~~```python
-[IMPORTANT]
-If you are using in notebook, use the below line to login:
-       from huggingface_hub import notebook_login
-       notebook_login()
-else use:
-       huggingface-cli login```~~
 
 ### Correcter - Available now
 ```python
