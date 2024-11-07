@@ -68,7 +68,7 @@ As of today grammatical safety nets for authoring social contents (Post or Comme
 
 ## Installation
 ```python
-pip install -U git+https://github.com/MitchellShibilski-Unkel/.git
+pip install -U git+https://github.com/MitchellShibilski-Unkel/Optimized-Gramformer.git
 ```
 ## Quick Start
 
