@@ -9,7 +9,7 @@ setuptools.setup(
     long_description="A framework for detecting, highlighting, and correcting grammatical errors on natural language text. Built off the original Gramformer by Prithiviraj Damodaran.",
     url="https://github.com/MitchellShibilski-Unkel/Optimized-Gramformer.git",
     packages=setuptools.find_packages(),
-    install_requires=['transformers', 'sentencepiece', 'python-Levenshtein', 'fuzzywuzzy',  'tokenizers', 'fsspec', 'errant', 'torch', 'intel_npu_acceleration_library'],
+    install_requires=['transformers', 'sentencepiece', 'python-Levenshtein', 'fuzzywuzzy',  'tokenizers', 'fsspec', 'errant', 'torch'],
     classifiers=[
         "Programming Language :: Python :: 3.10",
         "License :: MIT",
