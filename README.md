@@ -77,7 +77,7 @@ def set_seed(seed):
 set_seed(1212)
 
 
-gf = Gramformer(models = 1, use_gpu=False) # 1=corrector, 2=detector
+gf = Gramformer(device="cpu") 
 
 influent_sentences = [
     "He are moving here.",
@@ -153,7 +153,7 @@ from optgramformer import Gramformer
 
 set_seed(1212)
 
-gf = Gramformer(models = 1, use_gpu=False) # 1=corrector, 2=detector
+gf = Gramformer(device="cpu") 
 
 influent_sentences = [
     "He are moving here.",
@@ -202,7 +202,7 @@ from optgramformer import Gramformer
 
 set_seed(1212)
 
-gf = Gramformer(models = 1, use_gpu=False) # 1=corrector, 2=detector
+gf = Gramformer(device="cpu") 
 
 
 influent_sentences = [
@@ -246,7 +246,7 @@ for influent_sentence in influent_sentences:
 ### Detector - Coming soon
 ```python
 from optgramformer import Gramformer
-gf = Gramformer(models = 2, use_gpu=False) # 1=corrector, 2=detector
+gf = Gramformer(device="cpu") 
 grammar_fluency_score = gf.detect(<your input sentence>)
 ```
 
@@ -260,9 +260,19 @@ grammar_fluency_score = gf.detect(<your input sentence>)
 |[prithivida/grammar_error_correcter_v1](https://huggingface.co/prithivida/grammar_error_correcter_v1)  |Seq2Seq    |The corrected sentence              |Stable|
 
 ## System Compatibility
-Gramformer can run on the `CPU` and `GPU (Cuda)`. <br />
+Gramformer can run on the `CPU`, `NPU`, and `GPU (Cuda)`. <br />
+_*Disclaimer: the NPU has_ **Not** _been officially tested! It has been based off the Intel documentation._
 ```python
-    gf = Gramformer(models=1, use_gpu=True)
+    gf = Gramformer(device="cpu")
+``` 
+```python
+    gf = Gramformer(device="npu")
+``` 
+```python
+    gf = Gramformer(device="gpu")
+``` 
+```python
+    gf = Gramformer(device="cuda")
 ``` 
 
 ## Dataset
