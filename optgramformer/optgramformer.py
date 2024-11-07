@@ -1,7 +1,6 @@
 import gc
 import torch
 import errant
-import intel_npu_acceleration_library
 from transformers import AutoTokenizer
 from transformers import AutoModelForSeq2SeqLM
 from torch.quantization import quantize_dynamic
@@ -20,6 +19,7 @@ class Gramformer:
     if device == "gpu" or device == "cuda":
       self.correction_model.to(device)
     elif device == "npu":
+      import intel_npu_acceleration_library
       self.correction_model = intel_npu_acceleration_library.compile(self.correction_model, dtype=torch.int8)
     else:
       self.correction_model = quantize_dynamic(self.correction_model.to(device), {torch.nn.Linear}, dtype=torch.qint8)  # Reduces the model's size to run faster
