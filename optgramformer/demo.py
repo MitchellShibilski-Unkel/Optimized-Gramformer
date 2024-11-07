@@ -1,4 +1,4 @@
-from gramformer import Gramformer
+from optgramformer import Gramformer
 import torch
 
 def set_seed(seed):
