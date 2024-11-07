@@ -83,7 +83,7 @@ else use:
 ### Correcter - Available now
 ```python
 
-from gramformer import Gramformer
+from optgramformer import Gramformer
 import torch
 
 def set_seed(seed):
@@ -166,7 +166,7 @@ QE Estimator support has been rolled back due to version conflicts lm-scorer pos
 For edit, call ```gf.correct``` and pass original and corrected sentence to ```gf.get_edits``` method.
 
 ```python
-from gramformer import Gramformer
+from optgramformer import Gramformer
 
 set_seed(1212)
 
@@ -215,7 +215,7 @@ for influent_sentence in influent_sentences:
 For highlight, call ```gf.correct``` and pass original and corrected sentence to ```gf.highlight``` method.
 
 ```python
-from gramformer import Gramformer
+from optgramformer import Gramformer
 
 set_seed(1212)
 
@@ -262,7 +262,7 @@ for influent_sentence in influent_sentences:
 
 ### Detector - Coming soon
 ```python
-from gramformer import Gramformer
+from optgramformer import Gramformer
 gf = Gramformer(models = 2, use_gpu=False) # 1=corrector, 2=detector
 grammar_fluency_score = gf.detect(<your input sentence>)
 ```
