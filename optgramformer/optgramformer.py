@@ -8,14 +8,11 @@ from torch.quantization import quantize_dynamic
 
 class Gramformer:
   def __init__(self, device: str = "cpu", *showProgressMessages: bool):
-    self.annotator = errant.load('en')
-        
     self.device = device
     correction_model_tag = "prithivida/grammar_error_correcter_v1"
 
-    self.correction_tokenizer = AutoTokenizer.from_pretrained(correction_model_tag, token=False)
-    self.correction_model     = AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, token=False)
-    
+    self.correction_tokenizer, self.correction_model = AutoTokenizer.from_pretrained(correction_model_tag, token=False), AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, token=False)
+
     if device == "gpu" or device == "cuda":
       self.correction_model.to(device)
     elif device == "npu":
@@ -102,6 +99,7 @@ class Gramformer:
       return(" ".join(orig_tokens))
 
   def _get_edits(self, orig, cor):
+        self.annotator = errant.load('en')
         orig = self.annotator.parse(orig)
         cor = self.annotator.parse(cor)
         alignment = self.annotator.align(orig, cor)
