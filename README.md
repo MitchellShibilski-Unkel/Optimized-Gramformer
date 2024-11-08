@@ -287,7 +287,7 @@ grammar_fluency_score = gf.detect(<your input sentence>)
 |[prithivida/grammar_error_correcter_v1](https://huggingface.co/prithivida/grammar_error_correcter_v1)  |Seq2Seq    |The corrected sentence              |Stable|
 
 ## System Compatibility
-Gramformer can run on the `CPU`, `NPU`, and `GPU (Cuda)`. <br />
+Gramformer can run on the `CPU`, `NPU (Intel Core Ultra)`, and `GPU (Cuda)`. <br />
 _*Disclaimer: the NPU has_ **Not** _been officially tested! It has been based off the Intel documentation._
 ```python
     gf = Gramformer(device="cpu")
