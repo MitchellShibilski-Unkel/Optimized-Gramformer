@@ -270,13 +270,6 @@ for influent_sentence in influent_sentences:
 ----------------------------------------------------------------------------------------------------
 ```
 
-### Detector - Coming soon
-```python
-from optgramformer import Gramformer
-gf = Gramformer(device="cpu") 
-grammar_fluency_score = gf.detect(<your input sentence>)
-```
-
 ## Models
 
 |      Model          |Type                          |Return                         |status|
