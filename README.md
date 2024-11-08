@@ -16,6 +16,7 @@ Human and machine generated text often suffer from grammatical and/or typographi
 ## Table of contents
 - [Usecases for Gramformer](#usecases-for-gramformer)
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [Models](#models)
 - [System Compatibility](#system-compatibility)
 - [Dataset](#dataset)
@@ -62,6 +63,32 @@ As of today grammatical safety nets for authoring social contents (Post or Comme
 ```python
 pip install -U git+https://github.com/MitchellShibilski-Unkel/Optimized-Gramformer.git
 ```
+
+## Documentation
+#### 1. Getting Started:
+```python
+from optgramformer import Gramformer
+```
+#### 2. Initial Model Loading
+```python
+__name_of_var__ = Gramformer(device="__device__")
+```
+You can either target your `CPU`, `GPU`, or `NPU`. Please see [System Compatibility](#system-compatibility) for more detail.
+#### 3. Grammar Correction
+```python
+__name_of_var__.correct(input_sentence: str, returnAsStr: bool = True, maxLength: int = 128)
+``` 
+<ul>
+    <li>input_sentence [String] :: Sentence you want to correct</li>
+    <li>maxLength [Integer] :: Maxium length for sentence generation</li>
+    <li>returnAsStr [Boolean] :: Returns the corrected sentence as a `string`; otherwise, it returns it as a `set`.</li>
+</ul>
+
+#### 4. Grammar Highlighting
+```python
+__name_of_var__.highlight(orig, cor)
+``` 
+Returns the orginal sentence to the corrected sentence
 
 ### Correcter - Available now
 ```python
