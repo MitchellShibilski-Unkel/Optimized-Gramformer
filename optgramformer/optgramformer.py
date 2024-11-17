@@ -24,7 +24,7 @@ class Gramformer:
     if showProgressMessages:
       print(">>> Gramformer :: Sucess :: Grammar Error Correction & Highlight Models Loaded...")
 
-  def correct(self, input_sentence: str, max_candidates: int = 1, returnAsStr: bool = True, maxLength: int = 128):
+  def correct(self, input_sentence: str, max_candidates: int = 1, returnAsStr: bool = True, minLength: int = 2, maxLength: int = 128):
     correction_prefix = "gec: "
     input_sentence = correction_prefix + input_sentence
     input_ids = self.correction_tokenizer.encode(input_sentence, return_tensors='pt')
@@ -37,6 +37,7 @@ class Gramformer:
         top_k=50,
         top_p=0.95,
         max_length=maxLength, 
+        min_length=minLength,
         num_beams=7,
         early_stopping=True,
         num_return_sequences=max_candidates)
