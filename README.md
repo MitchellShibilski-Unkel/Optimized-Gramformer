@@ -324,9 +324,3 @@ TBD (I will benchmark grammformer models against the following publicy available
 - [Synthetic Data Generation for Grammatical Error Correction with Tagged Corruption Models](https://www.aclweb.org/anthology/2021.bea-1.4/)
 - [Grammatical Error Detection and Correction Using Tagger Disagreement](https://www.aclweb.org/anthology/W14-1706.pdf)
 - [Automatic Annotation and Evaluation of Error Types for Grammatical Error Correction](https://aclanthology.org/P17-1074.pdf)
-    
-
-## How to cite Gramformer
-TBD
-
-
