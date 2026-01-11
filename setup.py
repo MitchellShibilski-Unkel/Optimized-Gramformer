@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="optgramformer",
-    version="2.2",
+    version="2.3",
     author="Mitchell Shibilski-Unkel",
     author_email="",
     description="Optimized Gramformer",
@@ -16,4 +16,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
 )
+
 
