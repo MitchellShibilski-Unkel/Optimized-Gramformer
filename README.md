@@ -71,9 +71,10 @@ from optgramformer import Gramformer
 ```
 #### 2. Initial Model Loading
 ```python
-__name_of_var__ = Gramformer(device="__device__")
+__name_of_var__ = Gramformer(device="__device__", downloadConfigFiles: bool = False, *showProgressMessages: bool)
 ```
-You can either target your `CPU`, `GPU`, or `NPU`. Please see [System Compatibility](#system-compatibility) for more detail.
+You can either target your `CPU`, `GPU`, or `NPU`. Please see [System Compatibility](#system-compatibility) for more detail. `downloadConfigFiles` allows you to download all the config files for Gramformer, and prevent the model from requesting the files from HuggingFace every time. 
+
 #### 3. Grammar Correction
 ```python
 __name_of_var__.correct(input_sentence: str, returnAsStr: bool = True, maxLength: int = 128)

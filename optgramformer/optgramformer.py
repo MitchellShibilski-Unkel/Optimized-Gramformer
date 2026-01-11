@@ -1,3 +1,4 @@
+import os
 import gc
 import torch
 import errant
@@ -7,11 +8,19 @@ from torch.quantization import quantize_dynamic
 
 
 class Gramformer:
-  def __init__(self, device: str = "cpu", *showProgressMessages: bool):
+  def __init__(self, device: str = "cpu", downloadConfigFiles: bool = False, *showProgressMessages: bool):
     self.device = device
     correction_model_tag = "prithivida/grammar_error_correcter_v1"
 
-    self.correction_tokenizer, self.correction_model = AutoTokenizer.from_pretrained(correction_model_tag, token=False), AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, token=False)
+    if downloadConfigFiles:
+      self.correction_tokenizer, self.correction_model = AutoTokenizer.from_pretrained(correction_model_tag, token=False), AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, token=False)
+      self.correction_model.save_pretrained("./gramformer/grammar-error-correcter-v1")
+      self.correction_tokenizer.save_pretrained("./gramformer/grammar-error-correcter-v1")
+    else:
+      if os.path.exists("./gramformer/grammar-error-correcter-v1"):
+        self.correction_tokenizer, self.correction_model = AutoTokenizer.from_pretrained("./gramformer/grammar-error-correcter-v1", token=False), AutoModelForSeq2SeqLM.from_pretrained("./gramformer/grammar-error-correcter-v1", token=False)
+      else:
+        self.correction_tokenizer, self.correction_model = AutoTokenizer.from_pretrained(correction_model_tag, token=False), AutoModelForSeq2SeqLM.from_pretrained(correction_model_tag, token=False)
 
     if device == "gpu" or device == "cuda":
       self.correction_model.to(device)
